@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>crud_rpg</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\" />
+    <None Remove="src\context\" />
+    <None Remove="src\controller\" />
+    <None Remove="src\enum\" />
+    <None Remove="src\model\" />
+    <None Remove="src\repository\" />
+    <None Remove="src\view\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\context\" />
+    <Folder Include="src\controller\" />
+    <Folder Include="src\enum\" />
+    <Folder Include="src\model\" />
+    <Folder Include="src\repository\" />
+    <Folder Include="src\view\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="enum\ItemMagico.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+  </ItemGroup>
+</Project>
