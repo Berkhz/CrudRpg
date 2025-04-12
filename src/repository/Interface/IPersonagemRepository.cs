@@ -9,7 +9,8 @@ namespace crud_rpg.src.repository
         public void AdicionarPersonagem(Personagem personagem);
 		public List<Personagem> ListarPersonagens();
 		public Personagem ListaPersonagem(long id);
-		public Personagem AtualizarNomeAventureiro(long id);
+		public Personagem AtualizarNomeAventureiro(long id, string novoNomeAventureiro);
 		public void RemoverPersonagem(long id);
-	}
+        public long BuscarAmuletoDoPersonagem(long id);
+    }
 }

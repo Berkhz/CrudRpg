@@ -3,11 +3,11 @@ namespace crud_rpg.src.model
 {
 	public class ItemMagico
 	{
-        private long Id { get; set; }
-        private string Nome { get; set; }
-        private Enum TipoDoItem { get; set; }
-        private int Forca { get; set; }
-        private int Defesa { get; set; }
+        public long Id { get; set; }
+        public string Nome { get; set; }
+        public Enum TipoDoItem { get; set; }
+        public int Forca { get; set; }
+        public int Defesa { get; set; }
 
         public ItemMagico(long id, string nome, Enum tipoDoItem, int forca, int defesa)
         {

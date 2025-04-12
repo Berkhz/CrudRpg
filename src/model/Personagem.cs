@@ -3,14 +3,14 @@ namespace crud_rpg.src.model
 {
 	public class Personagem
 	{
-        private long Id { get; set; }
-		private string Nome { get; set; }
-		private string NomeAventureiro { get; set; }
-		private Enum Classe { get; set; }
-		private int Level { get; set; }
-		private long ItemMagico { get; set; }
-		private int Forca { get; set; }
-		private int Defesa { get; set; }
+        public long Id { get; set; }
+        public string Nome { get; set; }
+        public string NomeAventureiro { get; set; }
+        public Enum Classe { get; set; }
+        public int Level { get; set; }
+        public long ItemMagico { get; set; }
+        public int Forca { get; set; }
+        public int Defesa { get; set; }
 
         public Personagem(long id, string nome, string nomeAventureiro, Enum classe, int level, long itemMagico, int forca, int defesa)
         {
