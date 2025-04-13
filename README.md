@@ -81,7 +81,7 @@ Base URL: `/api`
 
 1. Clone o repositório:
    ```
-   git clone https://github.com/seu-usuario/rpg-manager.git
+   git clone https://github.com/Berkhz/CrudRpg.git
    ```
 
 2. Configure a `connection string` no `appsettings.json` (caso esteja usando EF Core)
