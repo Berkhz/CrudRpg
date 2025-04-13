@@ -1,10 +1,7 @@
-﻿using System;
-using System.Data.Entity;
-using System.Diagnostics.CodeAnalysis;
-using crud_rpg.src.context;
-using crud_rpg.src.model;
+﻿using Rpg.Src.Context;
+using Rpg.Src.Model;
 
-namespace crud_rpg.src.repository
+namespace Rpg.Src.repository
 {
     public class PersonagemRepository : IPersonagemRepository
     {
@@ -15,7 +12,7 @@ namespace crud_rpg.src.repository
             context.SaveChanges();
         }
 
-        public Personagem AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
+        public string AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
         {
             using var context = new RpgContext();
             var personagem = context.Personagem.Find(id);
@@ -24,7 +21,7 @@ namespace crud_rpg.src.repository
                 throw new Exception("Não foi possível atualizar o nome pois o personagem informado não foi encontrado.");
 
             personagem.NomeAventureiro = novoNomeAventureiro;
-            return personagem;
+            return personagem.NomeAventureiro;
         }
 
         public Personagem ListaPersonagem(long id)

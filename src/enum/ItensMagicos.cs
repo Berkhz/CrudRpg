@@ -1,4 +1,4 @@
-﻿namespace crud_rpg.src.@enum
+﻿namespace Rpg.Src.@enum
 {
     public enum ItensMagicos
     {

@@ -1,5 +1,4 @@
-﻿using System;
-namespace crud_rpg.src.model
+﻿namespace Rpg.Src.Model
 {
 	public class ItemMagico
 	{

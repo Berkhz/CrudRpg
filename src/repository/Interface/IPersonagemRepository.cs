@@ -1,15 +1,13 @@
-﻿using System;
-using System.Data.Entity;
-using crud_rpg.src.model;
+﻿using Rpg.Src.Model;
 
-namespace crud_rpg.src.repository
+namespace Rpg.Src.repository
 {
 	public interface IPersonagemRepository
 	{
         public void AdicionarPersonagem(Personagem personagem);
 		public List<Personagem> ListarPersonagens();
 		public Personagem ListaPersonagem(long id);
-		public Personagem AtualizarNomeAventureiro(long id, string novoNomeAventureiro);
+		public string AtualizarNomeAventureiro(long id, string novoNomeAventureiro);
 		public void RemoverPersonagem(long id);
         public long BuscarAmuletoDoPersonagem(long id);
     }

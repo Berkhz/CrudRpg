@@ -1,8 +1,8 @@
-﻿using crud_rpg.src.context;
-using crud_rpg.src.model;
-using crud_rpg.src.repository.Interface;
+﻿using Rpg.Src.Context;
+using Rpg.Src.Model;
+using Rpg.Src.repository.Interface;
 
-namespace crud_rpg.src.repository
+namespace Rpg.Src.repository
 {
     public class ItemMagicoRepository : IItemMagicoRepository
     {

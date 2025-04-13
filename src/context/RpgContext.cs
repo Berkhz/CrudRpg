@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using crud_rpg.src.model;
+using Rpg.Src.Model;
 
-namespace crud_rpg.src.context
+namespace Rpg.Src.Context
 {
     public class RpgContext : DbContext
 	{
