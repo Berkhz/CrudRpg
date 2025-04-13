@@ -10,7 +10,7 @@ Sistema de gerenciamento de um jogo de RPG, permitindo o cadastro de **Personage
 - C#
 - ASP.NET Web API
 - Entity Framework Core
-- SQL Server (ou outro banco relacional via EF)
+- SQL Server (via LocalDB)
 - Camadas: Controller | Business | Repository | Model
 
 ---
@@ -80,18 +80,41 @@ Base URL: `/api`
 ## ▶️ Como rodar o projeto
 
 1. Clone o repositório:
-   ```
+   ```bash
    git clone https://github.com/Berkhz/CrudRpg.git
    ```
 
-2. Configure a `connection string` no `appsettings.json` (caso esteja usando EF Core)
-
-3. Execute o projeto via Visual Studio (F5) ou:
+2. Execute as migrations e crie o banco:
+   ```bash
+   dotnet ef database update
    ```
+
+3. Inicie o projeto:
+   ```bash
    dotnet run
    ```
 
-4. Acesse os endpoints via Postman, Swagger ou outro client HTTP.
+4. Acesse os endpoints via [Swagger UI](https://localhost:51928/swagger) ou outro client HTTP (ex: Postman)
+
+---
+
+## 📘 Testes com Swagger
+
+Com o projeto rodando, acesse:
+
+```
+https://localhost:{porta}/swagger
+```
+
+> O Swagger fornece uma interface gráfica para testar todos os endpoints da API.
+
+---
+
+## 🗃️ Banco de Dados
+
+- A aplicação usa o **SQL Server LocalDB**
+- O banco será criado automaticamente com o comando `dotnet ef database update`
+- Nome do banco: `RpgDB`
 
 ---
 
