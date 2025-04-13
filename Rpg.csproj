@@ -16,12 +16,12 @@
 
   <ItemGroup>
     <None Remove="Src\" />
-    <None Remove="Src\context\" />
-    <None Remove="Src\controller\" />
-    <None Remove="Src\enum\" />
-    <None Remove="Src\model\" />
-    <None Remove="Src\repository\" />
-    <None Remove="Src\view\" />
+    <None Remove="Src\Context\" />
+    <None Remove="Src\Controller\" />
+    <None Remove="Src\Enum\" />
+    <None Remove="Src\Model\" />
+    <None Remove="Src\Repository\" />
+    <None Remove="Src\View\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\Context\" />
