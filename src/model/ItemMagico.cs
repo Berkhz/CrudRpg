@@ -10,6 +10,8 @@ namespace Rpg.Src.Model
         public int Forca { get; set; }
         public int Defesa { get; set; }
 
+        public ItemMagico() {}
+
         public ItemMagico(long id, string nome, TipoItem tipoDoItem, int forca, int defesa)
         {
             Id = id;

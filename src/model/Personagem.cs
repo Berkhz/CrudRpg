@@ -12,6 +12,8 @@
         public int Forca { get; set; }
         public int Defesa { get; set; }
 
+        public Personagem() { }
+
         public Personagem(long id, string nome, string nomeAventureiro, ClassePersonagem classe, int level, List<ItemMagico> itensMagicos, int forca, int defesa)
         {
             Id = id;

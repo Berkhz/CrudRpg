@@ -1,16 +1,14 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using Rpg.Src.Model;
 
 namespace Rpg.Src.Context
 {
     public class RpgContext : DbContext
-	{
-		public DbSet<Personagem> Personagem { get; set; }
-		public DbSet<ItemMagico> ItemMagico { get; set; }
+    {
+        public RpgContext(DbContextOptions<RpgContext> options) : base(options) { }
 
-        public RpgContext() : base("TB_RPG")
-		{
-		}
-	}
+        public DbSet<Personagem> Personagem { get; set; }
+        public DbSet<ItemMagico> ItemMagico { get; set; }
+    }
 }
 

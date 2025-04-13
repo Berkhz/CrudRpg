@@ -1,21 +1,22 @@
-﻿using Rpg.Src.Business.Interface;
+﻿using Microsoft.AspNetCore.Mvc;
+using Rpg.Src.Business.Interface;
 using Rpg.Src.Model;
-using System.Web.Http;
 
 namespace Rpg.Src.Services.Api
 {
-    [RoutePrefix("api/ItemMagico")]
-    public class ItemMagicoController : ApiController
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ItemMagicoController : ControllerBase
     {
         private readonly IItemMagicoBusiness _itemMagicoBusiness;
+
         public ItemMagicoController(IItemMagicoBusiness itemMagicoBusiness)
         {
             _itemMagicoBusiness = itemMagicoBusiness;
         }
 
-        [HttpPost]
-        [Route("AdicionarItemMagico")]
-        public IHttpActionResult AdicionarItemMagico(ItemMagico itemMagico)
+        [HttpPost("AdicionarItemMagico")]
+        public IActionResult AdicionarItemMagico(ItemMagico itemMagico)
         {
             try
             {
@@ -24,13 +25,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível adicionar o item mágico. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpGet]
-        [Route("ListarItensMagicos")]
-        public IHttpActionResult ListarItensMagicos()
+        [HttpGet("ListarItensMagicos")]
+        public IActionResult ListarItensMagicos()
         {
             try
             {
@@ -39,13 +39,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível listar os itens mágicos. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpGet]
-        [Route("ListarItemMagicoPorId")]
-        public IHttpActionResult ListarItemMagicoPorId(long id)
+        [HttpGet("ListarItemMagicoPorId")]
+        public IActionResult ListarItemMagicoPorId(long id)
         {
             try
             {
@@ -54,28 +53,26 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível listar o item mágico. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpPut]
-        [Route("AdicionarItemMagicoAoPersonagem")]
-        public IHttpActionResult AdicionarItemMagicoAoPersonagem(long id, long idItemMagico)
+        [HttpPut("AdicionarItemMagicoAoPersonagem")]
+        public IActionResult AdicionarItemMagicoAoPersonagem(long id, long idItemMagico)
         {
             try
             {
                 _itemMagicoBusiness.AdicionarItemMagicoAoPersonagem(id, idItemMagico);
-                return Ok("Item mágico adicionado ao personagem com sucesso!");
+                return Ok("Item adicionado com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível adicionar o item mágico ao personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpGet]
-        [Route("ListarItemMagicoPorPersonagem")]
-        public IHttpActionResult ListarItemMagicoPorPersonagem(long id, long idItemMagico)
+        [HttpGet("ListarItemMagicoPorPersonagem")]
+        public IActionResult ListarItemMagicoPorPersonagem(long id, long idItemMagico)
         {
             try
             {
@@ -84,22 +81,21 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível listar o item mágico do personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpDelete]
-        [Route("RemoverItemMagicoDoPersonagem")]
-        public IHttpActionResult RemoverItemMagicoDoPersonagem(long id, long idItemMagico)
+        [HttpDelete("RemoverItemMagicoDoPersonagem")]
+        public IActionResult RemoverItemMagicoDoPersonagem(long id, long idItemMagico)
         {
             try
             {
                 _itemMagicoBusiness.RemoverItemMagicoDoPeronagem(id, idItemMagico);
-                return Ok("Item mágico removido do personagem com sucesso!");
+                return Ok("Item removido com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível remover o item mágico do personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
     }

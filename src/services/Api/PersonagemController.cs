@@ -1,27 +1,22 @@
-﻿using Rpg.Src.Business;
+﻿using Microsoft.AspNetCore.Mvc;
 using Rpg.Src.Business.Interface;
 using Rpg.Src.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
 
 namespace Rpg.Src.Services.Api
 {
-    [RoutePrefix("api/Personagem")]
-    public class PersonagemController : ApiController
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PersonagemController : ControllerBase
     {
         private readonly IPersonagemBusiness _personagemBusiness;
+
         public PersonagemController(IPersonagemBusiness personagemBusiness)
         {
             _personagemBusiness = personagemBusiness;
         }
 
-        [HttpPost]
-        [Route("AdicionarPersonagem")]
-        public IHttpActionResult AdicionarPersonagem(Personagem personagem)
+        [HttpPost("AdicionarPersonagem")]
+        public IActionResult AdicionarPersonagem(Personagem personagem)
         {
             try
             {
@@ -30,13 +25,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível adicionar o personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpGet]
-        [Route("ListarPersonagens")]
-        public IHttpActionResult ListarPersonagens()
+        [HttpGet("ListarPersonagens")]
+        public IActionResult ListarPersonagens()
         {
             try
             {
@@ -45,13 +39,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível listar os personagens. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpGet]
-        [Route("ListarPersonagemPorId")]
-        public IHttpActionResult ListarPersonagemPorId(long id)
+        [HttpGet("ListarPersonagemPorId")]
+        public IActionResult ListarPersonagemPorId(long id)
         {
             try
             {
@@ -60,13 +53,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível listar o personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpPut]
-        [Route("AtualizarNomeAventureiro")]
-        public IHttpActionResult AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
+        [HttpPut("AtualizarNomeAventureiro")]
+        public IActionResult AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
         {
             try
             {
@@ -75,13 +67,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível atualizar o nome aventureiro do personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpDelete]
-        [Route("DeletarPersonagem")]
-        public IHttpActionResult DeletarPersonagem(long id)
+        [HttpDelete("DeletarPersonagem")]
+        public IActionResult DeletarPersonagem(long id)
         {
             try
             {
@@ -90,13 +81,12 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível deletar o personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
 
-        [HttpGet]
-        [Route("BuscarAmuletoDoPersonagem")]
-        public IHttpActionResult BuscarAmuletoDoPersonagem(long id)
+        [HttpGet("BuscarAmuletoDoPersonagem")]
+        public IActionResult BuscarAmuletoDoPersonagem(long id)
         {
             try
             {
@@ -105,7 +95,7 @@ namespace Rpg.Src.Services.Api
             }
             catch (Exception e)
             {
-                return BadRequest("Não foi possível buscar o amuleto do personagem. " + "Erro: " + e);
+                return BadRequest("Erro: " + e.Message);
             }
         }
     }
