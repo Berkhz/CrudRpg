@@ -75,9 +75,14 @@ namespace Rpg.Src.repository
             if (personagem == null)
                 throw new Exception("Personagem não encontrado");
 
-            return personagem.ItensMagicos
-                .Where(item => item.TipoDoItem == TipoItem.Amuleto)
-                .ToList();
+            var amuleto = personagem.ItensMagicos
+                                    .Where(item => item.TipoDoItem == TipoItem.Amuleto)
+                                    .ToList();
+
+            if (amuleto.Count == 0)
+                throw new Exception("Nenhum amuleto encontrado para o personagem informado");
+
+            return amuleto;
         }
     }
 }

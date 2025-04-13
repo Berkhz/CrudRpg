@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using crud_rpg.Src.Dto;
+using Microsoft.AspNetCore.Mvc;
 using Rpg.Src.Business.Interface;
 using Rpg.Src.Model;
 
@@ -16,10 +17,18 @@ namespace Rpg.Src.Services.Api
         }
 
         [HttpPost("AdicionarItemMagico")]
-        public IActionResult AdicionarItemMagico(ItemMagico itemMagico)
+        public IActionResult AdicionarItemMagico(ItemMagicoDto dto)
         {
             try
             {
+                var itemMagico = new ItemMagico
+                {
+                    Nome = dto.Nome,
+                    TipoDoItem = dto.TipoDoItem,
+                    Forca = dto.Forca,
+                    Defesa = dto.Defesa
+                };
+
                 _itemMagicoBusiness.AdicionarItemMagico(itemMagico);
                 return Ok("Item mágico criado com sucesso!");
             }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rpg.Src.Business.Interface;
+using Rpg.Src.Dto;
 using Rpg.Src.Model;
+using System.Drawing;
 
 namespace Rpg.Src.Services.Api
 {
@@ -9,17 +11,35 @@ namespace Rpg.Src.Services.Api
     public class PersonagemController : ControllerBase
     {
         private readonly IPersonagemBusiness _personagemBusiness;
+        private readonly IItemMagicoBusiness _itemMagicoBusiness;
 
-        public PersonagemController(IPersonagemBusiness personagemBusiness)
+        public PersonagemController(IPersonagemBusiness personagemBusiness, IItemMagicoBusiness itemMagicoBusiness)
         {
             _personagemBusiness = personagemBusiness;
+            _itemMagicoBusiness = itemMagicoBusiness;
         }
 
         [HttpPost("AdicionarPersonagem")]
-        public IActionResult AdicionarPersonagem(Personagem personagem)
+        public IActionResult AdicionarPersonagem(PersonagemDto dto)
         {
             try
             {
+                var itens = dto.ItensMagicos
+                    .Select(id => _itemMagicoBusiness.ListaItemMagico(id))
+                    .Where(item => item != null)
+                    .ToList();
+
+                var personagem = new Personagem
+                {
+                    Nome = dto.Nome,
+                    NomeAventureiro = dto.NomeAventureiro,
+                    Classe = dto.Classe,
+                    Level = dto.Level,
+                    ItensMagicos = itens,
+                    Forca = dto.Forca,
+                    Defesa = dto.Defesa
+                };
+
                 _personagemBusiness.AdicionarPersonagem(personagem);
                 return Ok("Personagem criado com sucesso!");
             }
