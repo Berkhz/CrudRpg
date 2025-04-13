@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="src\" />
+    <None Remove="Src\" />
     <None Remove="Src\context\" />
     <None Remove="Src\controller\" />
     <None Remove="Src\enum\" />
