@@ -1,11 +1,6 @@
 ﻿using Rpg.Src.Business.Interface;
 using Rpg.Src.Model;
 using Rpg.Src.repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rpg.Src.Business
 {
@@ -26,6 +21,7 @@ namespace Rpg.Src.Business
         public string AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
         {
             _personagemRepository.AtualizarNomeAventureiro(id, novoNomeAventureiro);
+
             return "Nome do aventureiro atualizado com sucesso!";
         }
 
@@ -34,6 +30,7 @@ namespace Rpg.Src.Business
             var personagem = _personagemRepository.ListaPersonagem(id);
             if (personagem == null)
                 throw new Exception("Personagem não encontrado");
+
             return personagem;
         }
 
@@ -42,6 +39,7 @@ namespace Rpg.Src.Business
             var personagens = _personagemRepository.ListarPersonagens();
             if (personagens == null)
                 throw new Exception("Nenhum personagem encontrado");
+
             return personagens;
         }
 
@@ -50,14 +48,16 @@ namespace Rpg.Src.Business
             var personagem = _personagemRepository.ListaPersonagem(id);
             if (personagem == null)
                 throw new Exception("Personagem não encontrado");
+
             _personagemRepository.RemoverPersonagem(id);
         }
 
-        public long BuscarAmuletoDoPersonagem(long id)
+        public List<ItemMagico> BuscarAmuletoDoPersonagem(long id)
         {
             var personagem = _personagemRepository.ListaPersonagem(id);
             if (personagem == null)
                 throw new Exception("Personagem não encontrado");
+
             return _personagemRepository.BuscarAmuletoDoPersonagem(id);
         }
 

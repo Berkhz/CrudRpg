@@ -1,4 +1,5 @@
 ﻿using Rpg.Src.Context;
+using Rpg.Src.@enum;
 using Rpg.Src.Model;
 
 namespace Rpg.Src.repository
@@ -49,11 +50,13 @@ namespace Rpg.Src.repository
             context.SaveChanges();
         }
 
-        public long BuscarAmuletoDoPersonagem(long id)
+        public List<ItemMagico> BuscarAmuletoDoPersonagem(long id)
         {
             using var context = new RpgContext();
-            var personagem = context.Personagem.Add(context.Personagem.Find(id));
-            return personagem.ItemMagico;
+            var personagem = context.Personagem.Find(id);
+            return personagem.ItensMagicos
+                             .Where(item => item.TipoDoItem == TipoItem.Amuleto)
+                             .ToList();
         }
     }
 }

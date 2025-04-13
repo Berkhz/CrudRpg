@@ -9,6 +9,6 @@ namespace Rpg.Src.repository
 		public Personagem ListaPersonagem(long id);
 		public string AtualizarNomeAventureiro(long id, string novoNomeAventureiro);
 		public void RemoverPersonagem(long id);
-        public long BuscarAmuletoDoPersonagem(long id);
+        public List<ItemMagico> BuscarAmuletoDoPersonagem(long id);
     }
 }

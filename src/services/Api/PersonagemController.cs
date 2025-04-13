@@ -21,109 +21,91 @@ namespace Rpg.Src.Services.Api
 
         [HttpPost]
         [Route("AdicionarPersonagem")]
-        public void AdicionarPersonagem(Personagem personagem)
+        public IHttpActionResult AdicionarPersonagem(Personagem personagem)
         {
             try
             {
                 _personagemBusiness.AdicionarPersonagem(personagem);
+                return Ok("Personagem criado com sucesso!");
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível adicionar o personagem. " + "Erro: " + e);
-            }
-            finally
-            {
-                Ok("Personagem criado com sucesso!");
+                return BadRequest("Não foi possível adicionar o personagem. " + "Erro: " + e);
             }
         }
 
         [HttpGet]
         [Route("ListarPersonagens")]
-        public List<Personagem> ListarPersonagens()
+        public IHttpActionResult ListarPersonagens()
         {
             try
             {
-                return _personagemBusiness.ListarPersonagens();
+                var personagens = _personagemBusiness.ListarPersonagens();
+                return Ok(personagens);
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível listar os personagens. " + "Erro: " + e);
-            }
-            finally
-            {
-                Ok();
+                return BadRequest("Não foi possível listar os personagens. " + "Erro: " + e);
             }
         }
 
         [HttpGet]
         [Route("ListarPersonagemPorId")]
-        public Personagem ListarPersonagemPorId(long id)
+        public IHttpActionResult ListarPersonagemPorId(long id)
         {
             try
             {
-                return _personagemBusiness.ListarPersonagemPorId(id);
+                var personagem = _personagemBusiness.ListarPersonagemPorId(id);
+                return Ok(personagem);
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível listar o personagem. " + "Erro: " + e);
-            }
-            finally
-            {
-                Ok();
+                return BadRequest("Não foi possível listar o personagem. " + "Erro: " + e);
             }
         }
 
         [HttpPut]
         [Route("AtualizarNomeAventureiro")]
-        public string AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
+        public IHttpActionResult AtualizarNomeAventureiro(long id, string novoNomeAventureiro)
         {
             try
             {
-                return _personagemBusiness.AtualizarNomeAventureiro(id, novoNomeAventureiro);
+                var novo = _personagemBusiness.AtualizarNomeAventureiro(id, novoNomeAventureiro);
+                return Ok(novo);
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível atualizar o nome aventureiro do personagem. " + "Erro: " + e);
-            }
-            finally
-            {
-                Ok();
+                return BadRequest("Não foi possível atualizar o nome aventureiro do personagem. " + "Erro: " + e);
             }
         }
 
         [HttpDelete]
         [Route("DeletarPersonagem")]
-        public void DeletarPersonagem(long id)
+        public IHttpActionResult DeletarPersonagem(long id)
         {
             try
             {
                 _personagemBusiness.DeletarPersonagem(id);
+                return Ok("Personagem deletado com sucesso!");
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível deletar o personagem. " + "Erro: " + e);
-            }
-            finally
-            {
-                Ok("Personagem deletado com sucesso!");
+                return BadRequest("Não foi possível deletar o personagem. " + "Erro: " + e);
             }
         }
 
         [HttpGet]
         [Route("BuscarAmuletoDoPersonagem")]
-        public long BuscarAmuletoDoPersonagem(long id)
+        public IHttpActionResult BuscarAmuletoDoPersonagem(long id)
         {
             try
             {
-                return _personagemBusiness.BuscarAmuletoDoPersonagem(id);
+                var amuletoPersonagem = _personagemBusiness.BuscarAmuletoDoPersonagem(id);
+                return Ok(amuletoPersonagem);
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível buscar o amuleto do personagem. " + "Erro: " + e);
-            }
-            finally
-            {
-                Ok();
+                return BadRequest("Não foi possível buscar o amuleto do personagem. " + "Erro: " + e);
             }
         }
     }

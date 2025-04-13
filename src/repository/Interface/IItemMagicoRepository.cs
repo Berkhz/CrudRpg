@@ -1,4 +1,5 @@
 ﻿using Rpg.Src.Model;
+
 namespace Rpg.Src.repository.Interface
 {
 	public interface IItemMagicoRepository

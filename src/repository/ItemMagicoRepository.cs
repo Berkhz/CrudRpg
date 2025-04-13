@@ -1,6 +1,8 @@
 ﻿using Rpg.Src.Context;
+using Rpg.Src.@enum;
 using Rpg.Src.Model;
 using Rpg.Src.repository.Interface;
+using Microsoft.EntityFrameworkCore
 
 namespace Rpg.Src.repository
 {
@@ -17,19 +19,23 @@ namespace Rpg.Src.repository
         {
             using var context = new RpgContext();
 
-            var personagem = context.Personagem.Find(id);
+            var personagem = context.Personagem
+                .Include(p => p.ItensMagicos)
+                .FirstOrDefault(p => p.Id == id);
+
             if (personagem == null)
                 throw new Exception("Personagem não encontrado");
 
             var itemMagico = context.ItemMagico.Find(idItemMagico);
-
             if (itemMagico == null)
                 throw new Exception("Item mágico não encontrado");
 
-            if (personagem.ItemMagico != 0 || personagem.ItemMagico != null)
-                throw new Exception("Personagem já possui um item mágico");
+            personagem.ItensMagicos ??= new List<ItemMagico>();
 
-            personagem.ItemMagico = itemMagico.Id;
+            if (itemMagico.TipoDoItem == TipoItem.Amuleto && personagem.ItensMagicos.Any(i => i.TipoDoItem == TipoItem.Amuleto))
+                throw new Exception("O personagem já possui um amuleto");
+
+            personagem.ItensMagicos.Add(itemMagico);
             context.SaveChanges();
         }
 
@@ -53,8 +59,8 @@ namespace Rpg.Src.repository
             if (itemMagico == null)
                 throw new Exception("Item mágico não encontrado");
 
-            if (personagem.ItemMagico != itemMagico.Id)
-                throw new Exception("Item mágico não pertence ao personagem");
+            //if (personagem.ItensMagicos != itemMagico.Id)
+            //    throw new Exception("Item mágico não pertence ao personagem");
 
             var itensMagicos = context.ItemMagico.Where(i => i.Id == itemMagico.Id).ToList();
             if (itensMagicos == null)
@@ -75,18 +81,19 @@ namespace Rpg.Src.repository
         public void RemoverItemMagicoDoPeronagem(long id, long idItemMagico)
         {
             using var context = new RpgContext();
-            var personagem = context.Personagem.Find(id);
+
+            var personagem = context.Personagem
+                .Include(p => p.ItensMagicos)
+                .FirstOrDefault(p => p.Id == id);
+
             if (personagem == null)
                 throw new Exception("Personagem não encontrado");
 
-            var itemMagico = context.ItemMagico.Find(idItemMagico);
+            var itemMagico = personagem.ItensMagicos.FirstOrDefault(i => i.Id == idItemMagico);
             if (itemMagico == null)
-                throw new Exception("Item mágico não encontrado");
+                throw new Exception("Item mágico não está associado a este personagem");
 
-            if (personagem.ItemMagico != itemMagico.Id)
-                throw new Exception("Item mágico não pertence ao personagem");
-            personagem.ItemMagico = 0;
-            context.ItemMagico.Remove(itemMagico);
+            personagem.ItensMagicos.Remove(itemMagico);
             context.SaveChanges();
         }
     }

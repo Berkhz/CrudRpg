@@ -1,9 +1,4 @@
 ﻿using Rpg.Src.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rpg.Src.Business.Interface
 {
